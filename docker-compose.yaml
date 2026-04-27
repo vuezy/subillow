@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: subillow_postgres
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: ${DATABASE_USER:-subillow}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD:-subillow}
+      POSTGRES_DB: ${DATABASE_NAME:-subillow}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
